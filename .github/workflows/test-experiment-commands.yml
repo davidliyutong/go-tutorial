@@ -1,0 +1,46 @@
+# This is a basic workflow that is manually triggered
+
+name: Test Experiment Commands
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+    # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "greet"
+  test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+    
+      - name: Run tests, report generation with Docker container
+        uses: addnab/docker-run-action@v3
+        with:
+          image: registry.hub.docker.com/davidliyutong/go-notes-checker:latest
+          options: -v ${{ github.workspace }}:/mnt/project  -v ${{ github.workspace }}:/mnt/output
+          run: |
+            /opt/go-notes/go-notes-checker --project_path=/mnt/project --report_path=/mnt/output/REPORT.md --mode=markdown
+            /opt/go-notes/go-notes-checker --project_path=/mnt/project --report_path=/mnt/output/REPORT.json --mode=json
+            tar -zvcf /mnt/project/report.tar.gz /mnt/project/REPORT.md /mnt/project/REPORT.json
+            
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3.1.0
+        with: 
+          name: report
+          path: ./report.tar.gz
