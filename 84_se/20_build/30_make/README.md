@@ -134,70 +134,7 @@ make clean
 
 ## apiserver 示例
 
-在本章中，会为 apiserver 示例添加 Makefile 自动化构建，具体包括如下内容。
-
-### 配置环境
-
-```bash
-cd 80_server
-make help
-make tools # install all the tools on the local host
-make tidy # go mod tidy
-```
-
-### Test
-
-```bash
-cd 80_server
-make test
-```
-
-### Run
-
-```bash
-cd 80_server
-make run
-```
-
-### Build
-
-Build current platform
-
-```bash
-cd 80_server
-make clean
-make build
-make clean
-```
-
-Build multiple platforms
-
-```bash
-cd 80_server
-make clean
-make build.multiarch
-make clean
-```
-
-### Docker Image & Run
-
-```bash
-cd 80_server
-make image
-docker run -d -v $(pwd)/configs/:/etc/apiserver/ -p 8080:8080 wukongsun/apiserver-amd64
-```
-
-注意：因为运行环境不同，在 Docker 镜像启动时，需要修改 apiserver.yaml 的 3 个参数：
-
-- gin/secure/cert-file
-- gin/secure/ private-key-file
-- mysql/host
-
-### K8s Run
-
-```shell
-make deploy
-```
+- [apiserver 示例](80_server/README.md)：为 apiserver 示例添加 Makefile 自动化构建。
 
 ## Ref
 
