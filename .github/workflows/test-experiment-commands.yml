@@ -33,7 +33,7 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: registry.hub.docker.com/davidliyutong/go-notes-checker:v1.0-dev-amd64
-          options: -v ${{ github.workspace }}:/mnt/project  -v ${{ github.workspace }}:/mnt/output
+          options: -e DOOD_PROJECT_PATH=${{ github.workspace }} -v ${{ github.workspace }}:/mnt/project  -v ${{ github.workspace }}:/mnt/output -v /var/run/docker.sock:/var/run/docker.sock
           run: |
             ls /mnt/project/
             sh -c "/opt/app/go-notes-checker --project_path=/mnt/project/ --report_path=/mnt/output/REPORT.md --mode=markdown"
