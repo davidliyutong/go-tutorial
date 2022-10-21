@@ -36,8 +36,8 @@ jobs:
           options: -v ${{ github.workspace }}:/mnt/project  -v ${{ github.workspace }}:/mnt/output
           run: |
             ls /mnt/project/
-            sh -c "/opt/go-notes/go-notes-checker --project_path=/mnt/project/ --report_path=/mnt/output/REPORT.md --mode=markdown"
-            sh -c "/opt/go-notes/go-notes-checker --project_path=/mnt/project/ --report_path=/mnt/output/REPORT.json --mode=json"
+            sh -c "/opt/app/go-notes-checker --project_path=/mnt/project/ --report_path=/mnt/output/REPORT.md --mode=markdown"
+            sh -c "/opt/app/go-notes-checker --project_path=/mnt/project/ --report_path=/mnt/output/REPORT.json --mode=json"
             cd /mnt/project/ && tar -zvcf report.tar.gz REPORT.md REPORT.json
           
       - name: Upload test result
