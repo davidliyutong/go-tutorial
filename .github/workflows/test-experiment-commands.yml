@@ -32,7 +32,7 @@ jobs:
       - name: Run tests, report generation with Docker container
         uses: addnab/docker-run-action@v3
         with:
-          image: registry.hub.docker.com/davidliyutong/go-notes-checker:v1.0-dev
+          image: registry.hub.docker.com/davidliyutong/go-notes-checker:v1.0-dev-amd64
           options: -v ${{ github.workspace }}:/mnt/project  -v ${{ github.workspace }}:/mnt/output
           run: |
             ls /mnt/project/
