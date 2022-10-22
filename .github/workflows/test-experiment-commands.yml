@@ -36,8 +36,8 @@ jobs:
           options: -e DOOD_PROJECT_PATH=${{ github.workspace }} -v ${{ github.workspace }}:/mnt/project  -v ${{ github.workspace }}:/mnt/output -v /var/run/docker.sock:/var/run/docker.sock
           run: |
             ls /mnt/project/
-            sh -c "/opt/app/go-notes-checker --project_path=/mnt/project/ --report_path=/mnt/output/REPORT.md --mode=markdown"
-            sh -c "/opt/app/go-notes-checker --project_path=/mnt/project/ --report_path=/mnt/output/REPORT.json --mode=json"
+            sh -c "/opt/app/go-notes-checker --project_path=/mnt/project/ --report_path=/mnt/output/REPORT.md --mode=markdown" --ignore_pattern=*/pkg/*,*/vendor/*,*/.*/*
+            sh -c "/opt/app/go-notes-checker --project_path=/mnt/project/ --report_path=/mnt/output/REPORT.json --mode=json" --ignore_pattern=*/pkg/*,*/vendor/*,*/.*/*
             cd /mnt/project/ && tar -zvcf report.tar.gz REPORT.md REPORT.json
           
       - name: Upload test result
