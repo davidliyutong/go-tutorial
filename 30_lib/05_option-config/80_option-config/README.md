@@ -31,7 +31,7 @@ apiserver 应用核心是对外提供一个 web service，包括 CRUD 等不同�
 - 应用初始化。
 - 服务启动。
 
-<img src="figures/image-20221023083814735.png" alt="image-20221023083814735" style="zoom:50%;" />
+<img src="figures/image-20221024160109851.png" alt="image-20221024160109851" style="zoom:50%;" />
 
 命令行程序、命令行参数解析和配置文件解析，是所有服务都需要具备的功能，这些功能有机结合到一起，共同构成了应用框架。所以，要构建的任何一个应用程序，至少要具备命令行程序、命令行参数解析和配置文件解析这 3 种功能：
 
@@ -277,7 +277,7 @@ Config 结构体会在 App 启动后幻化为 App 自身的 runtime 结构体，
 
 - preparedapiserver.Run()：运行 preparedapiserver，如 `preparedapiserver.Run()`
 
-##操作
+## 操作
 
 ```bash
 go run cmd/apiserver.go -c configs/config.yaml
