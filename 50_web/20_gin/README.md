@@ -612,20 +612,12 @@ Cookie 实际上就是服务器保存在浏览器上的一段信息。浏览器�
 
 ```shell
 go run 90_advanced/19_cookie.go
-# 新建终端，并在新建的终端继续
-sleep 10
-curl http://127.0.0.1:8080/login  # set the cookie for the browser
-curl http://127.0.0.1:8080/home  # check the cookie value
 ```
 
-或者在同一个终端窗口中执行
+在浏览器中登录以下 2 个 endpoints
 
-```bash
-go run 90_advanced/19_cookie.go &
-sleep 10
-curl http://127.0.0.1:8080/login  # set the cookie for the browser
-curl http://127.0.0.1:8080/home  # check the cookie value
-```
+- http://localhost:8080/login  # set the cookie for the browser
+- http://localhost:8080/home  # check the cookie value
 
 #### Session
 
@@ -966,7 +958,7 @@ curl --insecure -X DELETE http://127.0.0.1:8080/v1/users/user99
 
 ### Question
 
-根据代码，请描述当前应用中，如何实现多接口同时运行，采用了什么机制？并且给出代码予以说明。
+根据代码，请描述当前应用中，如何实现多接口同时运行（包括 HTTP、HTTPS 和 GRPC 接口，同时 HTTP 和 HTTPS 接口中又可以支持不同的 endpoints 路径），采用了什么机制？并且给出代码予以说明。
 
 ## Ref
 
